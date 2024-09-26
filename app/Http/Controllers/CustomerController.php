@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Customer;
+use App\Models\Order;
+
 
 
 class CustomerController extends Controller
@@ -16,6 +18,13 @@ class CustomerController extends Controller
         $results = Customer::all();
 
         return $results;
+    }
+
+    public function index_orders($id)
+    {
+        $orders = Order::where('customer_id', $id)->get();
+
+        return $orders;
     }
 
     /**
@@ -34,6 +43,14 @@ class CustomerController extends Controller
         $customer = Customer::where('customer_id',$id)->get();
 
         return $customer;
+    }
+
+    public function show_orders(string $id, string $oid)
+    {
+        $orders = Order::where('customer_id',$id);
+        $order = $orders->where('order_id',$oid)->get();
+
+        return $order;
     }
 
     /**
