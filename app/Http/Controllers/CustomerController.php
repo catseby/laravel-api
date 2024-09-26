@@ -3,15 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Customer;
+
 
 class CustomerController extends Controller
 {
-    /**
+    /** 
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $results = Customer::all();
+
+        return $results;
     }
 
     /**
@@ -27,7 +31,9 @@ class CustomerController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $customer = Customer::where('customer_id',$id)->get();
+
+        return $customer;
     }
 
     /**
